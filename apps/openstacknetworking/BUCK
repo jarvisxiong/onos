@@ -1,0 +1,32 @@
+COMPILE_DEPS = [
+  '//lib:CORE_DEPS',
+  '//core/store/serializers:onos-core-serializers',
+  '//lib:org.apache.karaf.shell.console',
+  '//lib:javax.ws.rs-api',
+  '//utils/rest:onlab-rest',
+  '//cli:onos-cli',
+  '//apps/openstacknode:onos-apps-openstacknode',
+  '//apps/scalablegateway:onos-apps-scalablegateway',
+  '//lib:openstack4j-core',
+]
+
+osgi_jar_with_tests (
+  deps = COMPILE_DEPS,
+  web_context = '/onos/openstacknetworking',
+  api_title = 'OpenStack Networking App API',
+  api_version = '1.0',
+  api_description = 'REST API for OpenStack Networking App',
+  api_package = 'org.onosproject.openstacknetworking.web',
+)
+
+onos_app (
+  app_name = 'org.onosproject.openstacknetworking',
+  title = 'OpenStack Networking App',
+  category = 'Utility',
+  url = 'http://onosproject.org',
+  description = 'OpenStack Networking application.',
+  required_apps = [
+    'org.onosproject.openstacknode',
+    'org.onosproject.scalablegateway'
+  ]
+)
